@@ -8,6 +8,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
 
 BOT_NAME = 'shein'
 
@@ -19,7 +20,7 @@ NEWSPIDER_MODULE = 'shein.spiders'
 #USER_AGENT = 'shein (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+# ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -64,9 +65,10 @@ COOKIES_ENABLED = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'shein.pipelines.SheinPipeline': 300,
-#}
+
+ITEM_PIPELINES = {
+   'shein.pipelines.SheinPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +90,12 @@ COOKIES_ENABLED = False
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+
+MEDIA_ALLOW_REDIRECTS = True #因为图片地址会被重定向，所以这个属性要为True
+IMAGES_STORE = "E:\\img"  #存储图片的路径
+ROBOTSTXT_OBEY = False  #Robot协议属性要为False，不然就不会抓取任何内容
+ITEM_PIPELINES = {
+    'shein.pipelines.SheinPipeline': 1,
+}
