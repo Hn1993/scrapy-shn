@@ -7,4 +7,9 @@ response = requests.get(base_urls)
 
 s = etree.HTML(response.text)
 next_page = s.xpath('/ html / body / div[1] / div[1] / div / div[1] / div[2] / div / div[4] / div[1] / a / @title')
-print(next_page)
+image_url = s.xpath('/html/body/div[1]/div[1]/div/div[1]/div[2]/div/div[4]/div[1]/div[1]/a/img[2]/@data-src')
+# /html/body/div[1]/div[1]/div/div[1]/div[2]/div[4]/div[4]/div[1]/div[1]/a/img[2]
+#
+# /html/body/div[1]/div[1]/div/div[1]/div[2]/div[7]/div[4]/div[1]/div[1]/a/img[2]
+print(image_url)
+print(len(image_url))

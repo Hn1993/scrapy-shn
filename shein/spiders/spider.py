@@ -11,6 +11,10 @@ class TiebaSpider(scrapy.Spider):
         # / html / body / div[1] / div[1] / div / div[1] / div[2] / div[1] / div[4] / div[1] / a
         # / html / body / div[1] / div[1] / div / div[1] / div[2] / div[2] / div[4] / div[1] / a
         item['name'] = response.xpath('/ html / body / div[1] / div[1] / div / div[1] / div[2] / div / div[4] / div[1] / a / @title').extract()
+        item['price'] = response.xpath('/ html / body / div[1] / div[1] / div / div[1] / div[2] / div / div[4] / div[1] / a / @data-price').extract()
+        item['image_url'] = response.xpath('/ html / body / div[1] / div[1] / div / div[1] / div[2] / div / div[4] / div[1] / a / @data-price').extract()
+
 
         print(item['name'])
+        print(item['price'])
         yield item
