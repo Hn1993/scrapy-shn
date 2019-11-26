@@ -9,6 +9,8 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 import os
+import scrapy
+
 
 BOT_NAME = 'shein'
 
@@ -28,7 +30,7 @@ NEWSPIDER_MODULE = 'shein.spiders'
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+# DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -66,9 +68,9 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
-ITEM_PIPELINES = {
-   'shein.pipelines.SheinPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#    'shein.pipelines.SheinPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -93,9 +95,12 @@ ITEM_PIPELINES = {
 
 
 
-MEDIA_ALLOW_REDIRECTS = True #因为图片地址会被重定向，所以这个属性要为True
-IMAGES_STORE = "E:\\img"  #存储图片的路径
+# MEDIA_ALLOW_REDIRECTS = True #因为图片地址会被重定向，所以这个属性要为True
+
 ROBOTSTXT_OBEY = False  #Robot协议属性要为False，不然就不会抓取任何内容
-ITEM_PIPELINES = {
-    'shein.pipelines.SheinPipeline': 1,
-}
+ITEM_PIPELINES = {'shein.pipelines.SheinImgDownloadPipeline': 17}
+# ITEM_PIPELINES = {
+#     'shein.pipelines.SheinPipeline': 1,  # 激活图片下载管道
+# }
+IMAGES_STORE = 'images'  #存储图片的路径
+IMAGES_URLS_FIELD = 'image_urls'
